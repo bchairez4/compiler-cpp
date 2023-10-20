@@ -19,7 +19,7 @@ class LexicalAnalyzer {
 
         ~LexicalAnalyzer() {}
 
-        LexicalAnalyzer& operator=(const LexicalAnalyzer other) {}
+        LexicalAnalyzer& operator=(const LexicalAnalyzer& other) {}
 };
 
 #endif
