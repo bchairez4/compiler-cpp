@@ -1,0 +1,6 @@
+class LexicalAnalyzer {
+    private:
+        //
+    public:
+        //
+};
