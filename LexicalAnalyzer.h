@@ -13,6 +13,7 @@ class LexicalAnalyzer {
         char separators_[8] = {',', ';', '{', '}', '(', ')', '[', ']'};
         std::string keywords_[13] = {"bool", "char", "do", "double", "else", "false", "for", "float", "int", "if", "return", "true", "while"};
         std::string operators_[7] = {"=", "==", "!=", "<", ">", "<=", ">="};
+        int validIdentifierDFA[3][3] = {{1, 2, 2}, {1, 1, 2}, {2, 2, 2}}; 
     public:
         LexicalAnalyzer() {}
 
