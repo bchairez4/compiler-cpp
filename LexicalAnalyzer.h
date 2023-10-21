@@ -2,8 +2,9 @@
 #define LEXICALANALYZER_H
 
 #include <iostream>
-#include <string>
 #include <vector>
+
+#include "MeaningfulUnit.h"
 
 class LexicalAnalyzer {
     private:
