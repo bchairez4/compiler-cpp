@@ -77,9 +77,7 @@ class LexicalAnalyzer {
         }
 
         bool isValidIdentifier(const std::string& word) const {
-            int row = 0;
-            int col = 0;
-            int state = 0;
+            int row = 0, col = 0, state = 0;
 
             for (const char& character : word) {
                 if (isAlphabetic(std::toupper(character))) {
