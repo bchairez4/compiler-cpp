@@ -1,6 +1,7 @@
 #ifndef LEXICALANALYZER_H
 #define LEXICALANALYZER_H
 
+#include <cctype>
 #include <iostream>
 #include <vector>
 
@@ -21,7 +22,81 @@ class LexicalAnalyzer {
 
         ~LexicalAnalyzer() {}
 
-        LexicalAnalyzer& operator=(const LexicalAnalyzer& other) {}
+        LexicalAnalyzer& operator=(const LexicalAnalyzer& other) {
+            return *this;
+        }
+
+        bool isAlphabetic(const char& character) const {
+            for (const char& ch : alphaCharacters_) {
+                if (character == ch) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        bool isDigit(const char& character) const {
+            for (const char& digit : digits_) {
+                if (character == digit) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        bool isSeparator(const char& character) const {
+            for (const char& separator : separators_) {
+                if (character == separator) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        bool isKeyword(const std::string& word) const {
+            for (const std::string& w : keywords_) {
+                if (word == w) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        bool isOperator(const std::string& word) const {
+            for (const std::string& op : operators_) {
+                if (word == op) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        bool isValidIdentifier(const std::string& word) const {
+            int row, col, state = 0;
+
+            for (const char& character : word) {
+                if (isAlphabetic(std::toupper(character))) {
+                    col = 0;
+                    state = validIdentifierDFA_[row][col];
+                    row = state;
+                } else if (isDigit(character)) {
+                    col = 1;
+                    state = validIdentifierDFA_[row][col];
+                    row = state;
+                } else {
+                    col = 2;
+                    state = validIdentifierDFA_[row][col];
+                    row = state;
+                }
+            }
+
+            return (state == 1 ? true : false);
+        }
 };
 
 #endif
