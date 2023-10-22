@@ -1,4 +1,4 @@
-#ifndef MEANINGFULUNIT_h
+#ifndef MEANINGFULUNIT_H
 #define MEANINGFULUNIT_H
 
 #include <string>
