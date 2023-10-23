@@ -66,9 +66,9 @@ class LexicalAnalyzer {
             return false;
         }
 
-        bool isOperator(const std::string& word) const {
+        bool isOperator(const std::string& symbol) const {
             for (const std::string& op : operators_) {
-                if (word == op) {
+                if (symbol == op) {
                     return true;
                 }
             }
