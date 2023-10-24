@@ -2,10 +2,13 @@
 #define LEXICALANALYZER_H
 
 #include <cctype>
+#include <fstream>
 #include <iostream>
 #include <vector>
 
 #include "MeaningfulUnit.h"
+
+#define SOURCE_FILE "sample.txt"
 
 class LexicalAnalyzer {
     private:
@@ -96,6 +99,27 @@ class LexicalAnalyzer {
             }
 
             return (state == 1 ? true : false);
+        }
+
+        void readFile() {
+            std::ifstream infile(SOURCE_FILE, std::ifstream::in);
+
+            if (!infile) {
+                std::cout << "Error. File cannot be opened." << '\n';
+                return;
+            }
+
+            while (!infile.eof()) {
+                std::string fileLine = "";
+
+                std::getline(infile, fileLine);
+                if (!fileLine.empty()) {
+                    //file line has content, proceed
+                }
+
+            }
+
+            infile.close();
         }
 };
 
