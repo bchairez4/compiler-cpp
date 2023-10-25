@@ -1,7 +1,7 @@
 #ifndef LEXICALANALYZER_H
 #define LEXICALANALYZER_H
 
-#include <cctype>
+#include <cctype> //toupper
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -122,22 +122,22 @@ class LexicalAnalyzer {
                     std::string word;
                     while (infile >> word) {
                         MeaningfulUnit unit;
-                        std::string temp;
-                        bool found = false;
+                        std::string tempSeparator = "";
+                        bool foundTempSeparator = false;
 
                         // Check first character if separator
                         if (word.size() > 1 && isSeparator(word[0])) {
-                            std::string sep = "";
-                            sep = word[0];
-                            unit.update(SEPARATOR, sep);
+                            std::string separator = "";
+                            separator = word[0];
+                            unit.update(SEPARATOR, separator);
                             units.push_back(unit);
                             word.erase(word.begin());
                         }
 
                         // Check last character if separator
                         if (word.size() > 1 && isSeparator(word[word.length() - 1])) {
-                            temp = word[word.length() - 1];
-                            found = true;
+                            tempSeparator = word[word.length() - 1];
+                            foundTempSeparator = true;
                             word.erase(word.end() - 1);
                         }
 
@@ -153,10 +153,10 @@ class LexicalAnalyzer {
 
                         units.push_back(unit);
 
-                        if (found) {
-                            unit.update(SEPARATOR, temp);
+                        if (foundTempSeparator) {
+                            unit.update(SEPARATOR, tempSeparator);
                             units.push_back(unit);
-                            found = false;
+                            foundTempSeparator = false;
                         }
                     }
                 }
