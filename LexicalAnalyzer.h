@@ -125,51 +125,47 @@ class LexicalAnalyzer {
             }
 
             while (!infile.eof()) {
-                std::string fileLine = "";
+                std::string word = "";
 
-                std::getline(infile, fileLine);
-                if (!fileLine.empty()) {
-                    std::string word;
-                    while (infile >> word) {
-                        MeaningfulUnit unit;
-                        std::string tempSeparator = "";
-                        bool foundTempSeparator = false;
+                while (infile >> word) {
+                    MeaningfulUnit unit;
+                    std::string tempSeparator = "";
+                    bool foundTempSeparator = false;
 
-                        // Check first character if separator
-                        if (word.size() > 1 && isSeparator(word[0])) {
-                            std::string separator = "";
-                            separator = word[0];
-                            unit.update(SEPARATOR, separator);
-                            units.push_back(unit);
-                            word.erase(word.begin());
-                        }
-
-                        // Check last character if separator
-                        if (word.size() > 1 && isSeparator(word[word.length() - 1])) {
-                            tempSeparator = word[word.length() - 1];
-                            foundTempSeparator = true;
-                            word.erase(word.end() - 1);
-                        }
-
-                        if (isSeparator(word[0])) {
-                            unit.update(SEPARATOR, word);
-                        } else if (isOperator(word)) {
-                            unit.update(OPERATOR, word);
-                        } else if (isKeyword(word)) {
-                            unit.update(KEYWORD, word);
-                        } else if (isNumber(word)) {
-                            unit.update(NUMBER, word);
-                        } else if (isValidIdentifier(word)) {
-                            unit.update(IDENTIFIER, word);
-                        }
-
+                    // Check first character if separator
+                    if (word.size() > 1 && isSeparator(word[0])) {
+                        std::string separator = "";
+                        separator = word[0];
+                        unit.update(SEPARATOR, separator);
                         units.push_back(unit);
+                        word.erase(word.begin());
+                    }
 
-                        if (foundTempSeparator) {
-                            unit.update(SEPARATOR, tempSeparator);
-                            units.push_back(unit);
-                            foundTempSeparator = false;
-                        }
+                    // Check last character if separator
+                    if (word.size() > 1 && isSeparator(word[word.length() - 1])) {
+                        tempSeparator = word[word.length() - 1];
+                        foundTempSeparator = true;
+                        word.erase(word.end() - 1);
+                    }
+
+                    if (isSeparator(word[0])) {
+                        unit.update(SEPARATOR, word);
+                    } else if (isOperator(word)) {
+                        unit.update(OPERATOR, word);
+                    } else if (isKeyword(word)) {
+                        unit.update(KEYWORD, word);
+                    } else if (isNumber(word)) {
+                        unit.update(NUMBER, word);
+                    } else if (isValidIdentifier(word)) {
+                        unit.update(IDENTIFIER, word);
+                    }
+
+                    units.push_back(unit);
+
+                    if (foundTempSeparator) {
+                        unit.update(SEPARATOR, tempSeparator);
+                        units.push_back(unit);
+                        foundTempSeparator = false;
                     }
                 }
 
