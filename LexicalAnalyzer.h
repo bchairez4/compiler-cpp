@@ -127,14 +127,16 @@ class LexicalAnalyzer {
 
                         // Check first character if separator
                         if (word.size() > 1 && isSeparator(word[0])) {
-                            unit.update(SEPARATOR, std::to_string(word[0]));
+                            std::string sep = "";
+                            sep = word[0];
+                            unit.update(SEPARATOR, sep);
                             units.push_back(unit);
                             word.erase(word.begin());
                         }
 
                         // Check last character if separator
                         if (word.size() > 1 && isSeparator(word[word.length() - 1])) {
-                            temp = std::to_string(word[word.length() - 1]);
+                            temp = word[word.length() - 1];
                             found = true;
                             word.erase(word.end() - 1);
                         }
