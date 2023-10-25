@@ -9,6 +9,11 @@
 #include "MeaningfulUnit.h"
 
 #define SOURCE_FILE "sample.txt"
+#define SEPARATOR "Separator"
+#define OPERATOR "Operator"
+#define KEYWORD "Key Word"
+#define IDENTIFIER "Identifier"
+#define NUMBER "Number"
 
 class LexicalAnalyzer {
     private:
@@ -101,7 +106,7 @@ class LexicalAnalyzer {
             return (state == 1 ? true : false);
         }
 
-        void readFile() {
+        void readFile(std::vector<MeaningfulUnit>& units) {
             std::ifstream infile(SOURCE_FILE, std::ifstream::in);
 
             if (!infile) {
@@ -114,7 +119,44 @@ class LexicalAnalyzer {
 
                 std::getline(infile, fileLine);
                 if (!fileLine.empty()) {
-                    //file line has content, proceed
+                    std::string word;
+                    while (infile >> word) {
+                        MeaningfulUnit unit;
+                        std::string temp;
+                        bool found = false;
+
+                        // Check first character if separator
+                        if (word.size() > 1 && isSeparator(word[0])) {
+                            unit.update(SEPARATOR, std::to_string(word[0]));
+                            units.push_back(unit);
+                            word.erase(word.begin());
+                        }
+
+                        // Check last character if separator
+                        if (word.size() > 1 && isSeparator(word[word.length() - 1])) {
+                            temp = std::to_string(word[word.length() - 1]);
+                            found = true;
+                            word.erase(word.end());
+                        }
+
+                        if (isSeparator(word[0])) {
+                            unit.update(SEPARATOR, word);
+                        } else if (isOperator(word)) {
+                            unit.update(OPERATOR, word);
+                        } else if (isKeyword(word)) {
+                            unit.update(KEYWORD, word);
+                        } else if (isValidIdentifier(word)) {
+                            unit.update(IDENTIFIER, word);
+                        }
+
+                        units.push_back(unit);
+
+                        if (found) {
+                            unit.update(SEPARATOR, temp);
+                            units.push_back(unit);
+                            found = false;
+                        }
+                    }
                 }
 
             }
