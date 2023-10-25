@@ -54,6 +54,16 @@ class LexicalAnalyzer {
             return false;
         }
 
+        bool isNumber(const std::string& number) const {
+            for (const char& digit : number) {
+                if (!isDigit(digit)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         bool isSeparator(const char& character) const {
             for (const char& separator : separators_) {
                 if (character == separator) {
@@ -147,6 +157,8 @@ class LexicalAnalyzer {
                             unit.update(OPERATOR, word);
                         } else if (isKeyword(word)) {
                             unit.update(KEYWORD, word);
+                        } else if (isNumber(word)) {
+                            unit.update(NUMBER, word);
                         } else if (isValidIdentifier(word)) {
                             unit.update(IDENTIFIER, word);
                         }
