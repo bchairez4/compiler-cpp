@@ -136,7 +136,7 @@ class LexicalAnalyzer {
                         if (word.size() > 1 && isSeparator(word[word.length() - 1])) {
                             temp = std::to_string(word[word.length() - 1]);
                             found = true;
-                            word.erase(word.end());
+                            word.erase(word.end() - 1);
                         }
 
                         if (isSeparator(word[0])) {
