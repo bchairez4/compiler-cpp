@@ -3,7 +3,6 @@
 
 #include <cctype> //toupper
 #include <fstream>
-#include <iostream>
 #include <vector>
 
 #include "MeaningfulUnit.h"
@@ -120,7 +119,6 @@ class LexicalAnalyzer {
             std::ifstream infile(SOURCE_FILE, std::ifstream::in);
 
             if (!infile) {
-                std::cout << "Error. File cannot be opened." << '\n';
                 return;
             }
 
