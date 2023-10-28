@@ -11,3 +11,6 @@ A lexeme is a sequence of characters and a token is the grouping that describes 
 
 The second phase of the compiler is the Syntactical Analysis Phase in which all tokens from the previous phase are taken and used to construct a parse tree in the proper grammatical format according to the C++ programming language. 
 Syntactical Analysis only concerns itself with the hierarchical representation of the source code.
+
+The third phase of the compiler is the Semantical Analysis Phase in which the parse tree created from the Syntactical Analysis Phase is verified for semantic correctness. 
+Semantic Analysis only concerns itself with whether the parse tree is meaningful or not. 
