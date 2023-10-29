@@ -14,3 +14,6 @@ Syntax Analysis only concerns itself with the hierarchical representation of the
 
 The third phase of the compiler is the Semantic Analysis Phase in which the parse tree created from the Syntactical Analysis Phase is verified for semantic correctness. 
 Semantic Analysis only concerns itself with whether the parse tree is meaningful or not. 
+
+The fourth phase of the compiler is the Intermediate Code Generator Phase in which the source code is translated into Assembly code. 
+The generated Assembly code can be readily executed by the machine. 
