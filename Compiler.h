@@ -8,7 +8,13 @@
 
 class Compiler {
     private:
-        //
+        std::vector<MeaningfulUnit> meaningfulUnits_;
     public:
-        //
+        Compiler() {}
+
+        Compiler(const Compiler& other) {}
+
+        ~Compiler() {}
+
+        Compiler& operator=(const Compiler& other) {}
 };
