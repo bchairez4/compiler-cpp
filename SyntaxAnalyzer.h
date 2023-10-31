@@ -2,8 +2,6 @@
 #define SYNTAXANALYZER_H
 
 class SyntaxAnalyzer {
-    private:
-        //
     public:
         SyntaxAnalyzer() {}
 
