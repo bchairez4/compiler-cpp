@@ -2,8 +2,6 @@
 #define SEMANTICANALYZER_H
 
 class SemanticAnalyzer {
-    private:
-        //
     public:
         SemanticAnalyzer() {}
 
