@@ -2,8 +2,6 @@
 #define INTERMEDIATECODEGENERATOR_H
 
 class IntermediateCodeGenerator {
-    private:
-        //
     public:
         IntermediateCodeGenerator() {}
 
