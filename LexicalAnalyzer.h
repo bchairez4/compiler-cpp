@@ -7,7 +7,6 @@
 
 #include "MeaningfulUnit.h"
 
-#define SOURCE_FILE "sample.txt"
 #define SEPARATOR "Separator"
 #define OPERATOR "Operator"
 #define KEYWORD "Key Word"
@@ -23,7 +22,9 @@ class LexicalAnalyzer {
         std::string operators_[7] = {"=", "==", "!=", "<", ">", "<=", ">="};
         int validIdentifierDFA_[3][3] = {{1, 2, 2}, {1, 1, 2}, {2, 2, 2}}; 
     public:
-        LexicalAnalyzer() {}
+        LexicalAnalyzer(const std::string& file, std::vector<MeaningfulUnit>& meaningfulUnits) {
+            readFile(file, meaningfulUnits);
+        }
 
         LexicalAnalyzer(const LexicalAnalyzer& other) {} 
 
@@ -115,8 +116,8 @@ class LexicalAnalyzer {
             return (state == 1 ? true : false);
         }
 
-        void readFile(std::vector<MeaningfulUnit>& units) {
-            std::ifstream infile(SOURCE_FILE, std::ifstream::in);
+        void readFile(const std::string& file, std::vector<MeaningfulUnit>& units) {
+            std::ifstream infile(file, std::ifstream::in);
 
             if (!infile) {
                 return;
