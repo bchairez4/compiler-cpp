@@ -20,5 +20,7 @@ class Compiler {
 
         ~Compiler() {}
 
-        Compiler& operator=(const Compiler& other) {}
+        Compiler& operator=(const Compiler& other) {
+            return *this;
+        }
 };
