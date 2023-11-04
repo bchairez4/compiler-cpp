@@ -9,7 +9,9 @@ class IntermediateCodeGenerator {
 
         ~IntermediateCodeGenerator() {}
 
-        IntermediateCodeGenerator& operator=(const IntermediateCodeGenerator& other) {}
+        IntermediateCodeGenerator& operator=(const IntermediateCodeGenerator& other) {
+            return *this;
+        }
 };
 
 #endif
