@@ -17,3 +17,6 @@ Semantic Analysis only concerns itself with whether the parse tree is meaningful
 
 The fourth phase of the compiler is the Intermediate Code Generator Phase in which the source code is translated into Assembly code. 
 The generated Assembly code can be readily executed by the machine. 
+
+In conclusion, the compiler will take a source file, categorize it's content into meaningful units, create a context grammar tree, ensure said tree is valid, then generate rudimentary assembly code. 
+The format in which the assembly code will be generated is written onto a .txt file.
