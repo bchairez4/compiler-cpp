@@ -1,7 +1,3 @@
 int num1 = 1, num2 = 2, _large;
 
-if (num1 > num2) {
-    _large = num1;
-} else {
-    _large = num2;
-}
+_large = num1 + num2;
